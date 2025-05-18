@@ -17,8 +17,9 @@ func main() {
 	fmt.Println("==============================================")
 	fmt.Println("  SISTEM PEMANTAUAN KUALITAS UDARA LOKAL")
 	fmt.Println("==============================================")
-	fmt.Println("Dibuat oleh: [Nama Mahasiswa]")
-	fmt.Println("NIM: [NIM Mahasiswa]")
+	fmt.Println("Dibuat oleh:")
+	fmt.Println("1. Gilang Ramadan (103012400304)")
+	fmt.Println("2. Muh. Ishaq Afif Ismail (103012400418)")
 	fmt.Println("Mata Kuliah: Algoritma dan Pemrograman 2")
 	fmt.Println("==============================================")
 
