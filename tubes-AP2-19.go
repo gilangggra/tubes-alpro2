@@ -440,12 +440,12 @@ func cariBerdasarkanKategori() {
 		if databaseUdara[i].Kategori == kategori {
 			if !ada {
 				fmt.Printf("\n╔════════════════════════════════════════════════════════╗\n")
-				fmt.Printf("║ HASIL PENCARIAN (%s)%18s ║\n", kategori, "")
+				fmt.Printf("║ HASIL PENCARIAN (%s)%18s               ║\n", kategori, "")
 				fmt.Println("╠════════════════════════════════════════════════════════╣")
 				ada = true
 			}
 			data := databaseUdara[i]
-			fmt.Printf("║ Kota: %-15s (%s)%20s ║\n", data.Kota, data.Kecamatan, "")
+			fmt.Printf("║ Kota: %-15s (%s)%20s  ║\n", data.Kota, data.Kecamatan, "")
 			fmt.Printf("║ AQI: %-3d %-45s ║\n", data.AQI, "")
 			fmt.Printf("║ Tanggal: %-45s ║\n", data.Tanggal)
 			fmt.Println("╚════════════════════════════════════════════════════════╝")
@@ -576,7 +576,6 @@ func tampilkanWilayahTerpolusi() {
 		dataTerurut[i] = databaseUdara[i]
 	}
 
-	// Selection sort descending
 	for i := 0; i < nData-1; i++ {
 		maxIdx := i
 		for j := i + 1; j < nData; j++ {
@@ -667,29 +666,24 @@ func tampilkanStatistik() {
 	fmt.Println("╚════════════════════════════════════════════════════════╝")
 }
 
-// Fungsi untuk membandingkan tanggal dalam format DD-MM-YYYY
 func bandingkanTanggal(tanggal, tanggalAwal, tanggalAkhir string) bool {
-	// Parsing tanggal
+
 	day := tanggal[:2]
 	month := tanggal[3:5]
 	year := tanggal[6:]
 
-	// Parsing tanggal awal
 	dayAwal := tanggalAwal[:2]
 	monthAwal := tanggalAwal[3:5]
 	yearAwal := tanggalAwal[6:]
 
-	// Parsing tanggal akhir
 	dayAkhir := tanggalAkhir[:2]
 	monthAkhir := tanggalAkhir[3:5]
 	yearAkhir := tanggalAkhir[6:]
 
-	// Bandingkan tahun
 	if year < yearAwal || year > yearAkhir {
 		return false
 	}
 
-	// Jika tahun sama, bandingkan bulan
 	if year == yearAwal && month < monthAwal {
 		return false
 	}
@@ -697,7 +691,6 @@ func bandingkanTanggal(tanggal, tanggalAwal, tanggalAkhir string) bool {
 		return false
 	}
 
-	// Jika tahun dan bulan sama, bandingkan hari
 	if year == yearAwal && month == monthAwal && day < dayAwal {
 		return false
 	}
@@ -722,7 +715,6 @@ func tampilkanWilayahTerpolusiPeriode() {
 	fmt.Print("Masukkan tanggal akhir (DD-MM-YYYY): ")
 	fmt.Scanln(&tanggalAkhir)
 
-	// Filter data berdasarkan periode
 	var dataDalamPeriode []DataUdara
 	for i := 0; i < nData; i++ {
 		if bandingkanTanggal(databaseUdara[i].Tanggal, tanggalAwal, tanggalAkhir) {
@@ -738,7 +730,6 @@ func tampilkanWilayahTerpolusiPeriode() {
 		return
 	}
 
-	// Selection sort descending berdasarkan AQI
 	for i := 0; i < len(dataDalamPeriode)-1; i++ {
 		maxIdx := i
 		for j := i + 1; j < len(dataDalamPeriode); j++ {
@@ -749,7 +740,6 @@ func tampilkanWilayahTerpolusiPeriode() {
 		dataDalamPeriode[i], dataDalamPeriode[maxIdx] = dataDalamPeriode[maxIdx], dataDalamPeriode[i]
 	}
 
-	// Tentukan jumlah data yang akan ditampilkan (maks 5)
 	jumlahTampil := 5
 	if len(dataDalamPeriode) < 5 {
 		jumlahTampil = len(dataDalamPeriode)
